@@ -1,0 +1,19 @@
+{% extends 'quiz/base.html' %}
+
+{% block title %}Delete Quiz | Quiz Portal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="page-box p-4">
+            <h2 class="section-title h4 text-danger">Delete Quiz</h2>
+            <p class="section-subtitle">Are you sure you want to delete <strong>{{ quiz.title }}</strong>?</p>
+            <form method="post" class="mt-3 d-flex gap-2 flex-wrap">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-primary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

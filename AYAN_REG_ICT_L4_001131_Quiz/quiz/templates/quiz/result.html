@@ -1,0 +1,18 @@
+{% extends 'quiz/base.html' %}
+
+{% block title %}Result | Quiz Portal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="page-box p-4 text-center">
+            <h2 class="section-title h4">Quiz Result</h2>
+            <p class="section-subtitle mb-3">{{ result.quiz.title }}</p>
+            <div class="score-circle">{{ result.score }}</div>
+            <p class="mb-1"><strong>Total Score:</strong> {{ result.score }}</p>
+            <p class="mb-3"><strong>Your Position:</strong> {{ position }} out of {{ total_participants }} participants</p>
+            <a href="{% url 'quiz_list' %}" class="btn btn-primary">Back to Quizzes</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

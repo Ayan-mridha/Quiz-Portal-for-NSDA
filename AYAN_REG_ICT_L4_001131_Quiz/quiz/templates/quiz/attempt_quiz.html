@@ -1,0 +1,33 @@
+{% extends 'quiz/base.html' %}
+
+{% block title %}Attempt Quiz | Quiz Portal{% endblock %}
+
+{% block content %}
+<div class="page-box p-4 mb-3">
+    <h2 class="section-title h4 mb-1">{{ quiz.title }}</h2>
+    <p class="section-subtitle">{{ quiz.description }}</p>
+</div>
+
+<div class="page-box p-4">
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question-card mb-3">
+                <h3 class="h6 mb-3">Q{{ forloop.counter }}. {{ question.text }}</h3>
+                {% for option in question.random_options %}
+                    <label class="option-item">
+                        <input class="form-check-input mt-0" type="radio" name="question_{{ question.id }}" value="{{ option.id }}">
+                        <span>{{ option.text }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        {% empty %}
+            <p class="text-muted mb-0">No questions found in this quiz.</p>
+        {% endfor %}
+
+        {% if questions %}
+            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
